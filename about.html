@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<style>
+    .team-member img{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    object-position: top;   /* ADD THIS */
+}
+body {
+    padding-top: 80px;
+}
+/* ===== BASE ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    position:relative;
+    background:url('grouppic.jpg') no-repeat center center fixed;
+    background-size:cover;
+}
+
+/* Dark Overlay */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);  /* Adjust 0.3 - 0.7 */
+    z-index:0;
+}
+
+/* Make all content above overlay */
+body > *{
+    position:relative;
+    z-index:1;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px;
+}
+
+/* ===== INTRO SECTION ===== */
+.section{
+    padding:80px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;   /* CENTER horizontally */
+    text-align:center;        /* TEXT CENTER */
+    flex-direction:column;    /* Stack content vertically */
+}
+.content{
+    flex:1;
+    min-width:300px;
+}
+
+.content h2{
+    font-size:38px;
+    margin-bottom:20px;
+    color:white;
+}
+
+.content p{
+    font-size:18px;
+    line-height:1.7;
+    color:white;
+    margin-bottom:25px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 28px;
+    background:linear-gradient(45deg,#ff6a00,#ee0979);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+.image{
+    flex:1;
+    text-align:center;
+}
+
+.image img{
+    width:350px;
+    height:350px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+/* ===== TEAM SECTION ===== */
+.team-title{
+    text-align:center;
+    font-size:36px;
+    margin:60px 0 40px;
+    color:white;
+}
+
+.team-section{
+    max-width:1100px;
+    margin:auto;
+    padding:0 20px 80px;
+}
+
+.team-member{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+    padding:40px;
+    margin-bottom:40px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.15);
+}
+
+.team-member:nth-child(even){
+    flex-direction:row-reverse;
+}
+
+.team-member img{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.team-info{
+    flex:1;
+}
+
+.team-info h3{
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+.role{
+    font-weight:bold;
+    color:#764ba2;
+    margin-bottom:15px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media(max-width:768px){
+
+    .section{
+        flex-direction:column;
+        text-align:center;
+        padding:50px 20px;
+    }
+
+    .image img{
+        width:250px;
+        height:250px;
+    }
+
+    .team-member{
+        flex-direction:column !important;
+        text-align:center;
+        padding:30px 20px;
+    }
+
+    .team-member img{
+        width:200px;
+        height:200px;
+    }
+
+    .team-title{
+        font-size:28px;
+    }
+
+    .content h2{
+        font-size:28px;
+    }
+
+    .content p{
+        font-size:16px;
+    }
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Submenu for desktop */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 0.25rem;
+}
+
+/* Mobile fix: dropdown submenu drops below parent */
+@media (max-width: 991px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove any margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+
+  .navbar-nav .dropdown-item {
+    color: white !important;
+    background-color: #1f2a36 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 !important;       /* Ensure no margin */
+    padding-left: 15px !important; /* Add some left padding for text */
+    padding-right: 15px !important; /* Optional */
+  }
+
+  .navbar-nav .dropdown-item:hover {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+}
+</style>
+</head>
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="growth 2.jpg.jpeg" alt="Growth Nest Logo" class="logo-img me-2" />
+      <span>Growth Nest Tech Solution</span>
+    </a>
+
+    <!-- Hamburger button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="jj.html">Home</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="static-dynamic.html">Website</a></li>
+            <li><a class="dropdown-item" href="appcreation.html">App Creation</a></li>
+            <li><a class="dropdown-item" href="digitalmarketing.html">Digital Marketing</a></li>
+            <li><a class="dropdown-item" href="dataanalytics.html">Data Analytics</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Career</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="3months.html">3 Months Courses</a></li>
+            <li><a class="dropdown-item" href="6months.html">6 Months Courses</a></li>
+            <li><a class="dropdown-item" href="1year.html">1 Year Courses</a></li>
+          </ul>
+        </li>
+
+        
+        <li class="nav-item"><a class="nav-link" href="jobopp12.html">Job Opportunities</a></li>
+        <li class="nav-item"><a class="nav-link" href="location.html">Location</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+      </ul>
+
+               
+            </div>
+                      <i class="search-icon"></i> 
+
+        </div>
+    </div>
+  </div>
+</nav>
+
+<!-- INTRO -->
+<div class="section container">
+    <div class="content">
+        <h2>We Are a Creative IT Team</h2>
+        <p>
+            We provide web development, mobile apps, digital marketing
+            and UI/UX solutions with innovation and quality.
+        </p>
+        <a href="#" class="btn">Learn More</a>
+    </div>
+
+  
+</div>
+
+<!-- TEAM TITLE -->
+<h2 class="team-title">Meet Our Team</h2>
+
+<!-- TEAM MEMBERS -->
+<div class="team-section">
+
+    <div class="team-member">
+        <img src="image.png">
+        <div class="team-info">
+            <h3>Brand Builder</h3>
+            <div class="role">Founder & CEO</div>
+<p>
+<strong>Venkadesh Murugan</strong> is a visionary Brand Builder and Founder who shapes the company’s identity with innovative ideas and strategic leadership. He focuses on building strong brand value, digital presence, and long-term business growth. With creative thinking and bold execution, he drives Growth Nest Tech Solutions toward excellence.
+</p>
+</p>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <img src="s.jpg">
+        <div class="team-info">
+            <h3>Founder & Architect</h3>
+            <div class="role">Co-Founder</div>
+            <p>
+<p>
+<strong>Surya Prabha </strong>is a strategic Co-Founder who lays the strong foundation for innovation and structured growth. She leads with clarity, purpose, and long-term vision. With smart planning and leadership skills, she ensures the company moves forward with stability and success.
+</p>
+</p>
+        </div>
+    </div>
+      <div class="team-member">
+        <img src="seniorflut.jpg">
+        <div class="team-info">
+            <h3>Mobile Application Architect</h3>
+            <div class="role">Senior Flutter developer & Co-Founder</div>
+            <p>
+<p>
+<strong>Sathish </strong>is a skilled Senior Flutter Developer who builds high-performance and user-friendly mobile applications. He/She focuses on clean UI design, smooth functionality, and cross-platform efficiency. With strong technical expertise and problem-solving ability, he/she delivers reliable and scalable mobile solutions.
+</p>
+</p>
+        </div>
+    </div>
+  
+        <div class="team-member">
+        <img src="admin.jpg">
+        <div class="team-info">
+            <h3>Admin</h3>
+            <div class="role">Office In-Charge</div>
+<p>
+<strong>Vishwanathan</strong> is a responsible and organized Office In-Charge who ensures smooth daily operations across the company. He manages internal coordination, supports team efficiency, and maintains structured workflow. With disciplined management and dedication, he strengthens the organization’s operational backbone.
+</p>
+</p>
+        </div>
+    </div>
+  
+  
+
+    <div class="team-member">
+        <img src="flutterdev.jpg">
+        <div class="team-info">
+            <h3>Member 1</h3>
+            <div class="role"> Junior Flutter & Frontend Developer</div>
+            <p><strong>Sakthimuthulakshmi</strong> is a skilled Front-End and Flutter Developer who creates responsive websites and smooth mobile applications. She focuses on clean design, user-friendly interfaces, and strong performance. With creative thinking and solid coding skills, she builds modern and reliable digital solutions.</p>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <img src="fullstackjava.jpg">
+        <div class="team-info">
+            <h3>Member 2</h3>
+            <div class="role">Full Stack Java Developer</div>
+           <p>
+<strong>Santhiya</strong> is a confident Full Stack Java Developer who builds strong and scalable web applications using Java and modern frontend technologies. She works on both backend and frontend clearly and effectively. As a trainer, she teaches students with practical examples and real-time project experience.
+</p>
+    </div>
+    </div>
+        <div class="team-member">
+        <img src="backenddev.jpg">
+        <div class="team-info">
+            <h3>Member 3</h3>
+            <div class="role">Backend Developer</div>
+           <p>
+<strong>Abi</strong> is a dedicated Backend Developer who builds secure, scalable, and high-performance server-side applications. He focuses on strong logic, database management, and smooth system integration. With clear problem-solving skills and structured coding practices, he ensures that every application runs efficiently behind the scenes.
+</p>
+    </div>
+    </div>
+  <div class="team-member">
+        <img src="flutterdev2.jpeg">
+        <div class="team-info">
+            <h3>Member 4</h3>
+            <div class="role">JuniorFlutter Developer</div>
+            <p>
+<strong>Selvin </strong>is a dedicated Flutter Developer who builds high-performance and user-friendly mobile applications. He focuses on clean UI design, smooth functionality, and cross-platform development. With strong problem-solving skills, he creates reliable and scalable mobile solutions.
+</p>
+        </div>
+    </div>
+    <div class="team-member">
+        <img src="ui_uxstaff.jpg">
+        <div class="team-info">
+            <h3>Member 5</h3>
+            <div class="role">UI/UX Designer</div>
+           <p>
+<strong>Shiyamala</strong> is a dedicated Front-End Developer who creates responsive and visually appealing websites. She focuses on clean design, smooth user experience, and structured coding practices. With strong attention to detail, she turns ideas into interactive digital interfaces.
+</p>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <img src="digitalmarketer.png">
+        <div class="team-info">
+            <h3>Member 6</h3>
+            <div class="role">Digital Marketing & Python</div>
+            <p>
+<strong>Banu</strong> is a creative and results-driven Digital Marketer who builds strong online presence for brands. She specializes in social media marketing, content strategy, and digital campaigns. With smart planning and innovative ideas, she helps businesses grow and connect with the right audience.
+</p>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <img src="fullstackpy.jpg">
+        <div class="team-info">
+            <h3>Member 7</h3>
+            <div class="role">Full Stack Python Developer</div>
+           <p>
+<strong>Berlin</strong> is a calm and clever Full Stack Python Developer who builds efficient and scalable web applications. She works smoothly on both frontend and backend, solving complex problems with smart and simple solutions. Her quiet confidence and sharp thinking make her a strong and reliable developer.
+</p>
+    </div>
+
+</div>
+</div>
+<footer>
+  <p>© 2025 Growth Nest Tech Solutions. All rights reserved. Designed with <i class="fas fa-heart"></i> for creative minds. <i class="fas fa-feather-alt"></i></p>
+
+  <div class="utility-left">
+    <div class="social-icons">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/growth_nest_tech_solution/" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/growthnesttech/" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <!-- Telegram -->
+      <a href="https://t.me/growthnesttech" target="_blank" aria-label="Telegram">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/growthnesttech/" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+<style>
+ footer {
+  background: #111;
+  color: #fff;
+  padding: 25px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+footer i {
+  margin: 0 5px;
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #0a66c2; /* LinkedIn blue on hover (also works for others if needed) */
+}
+.navbar-collapse {
+  position: static !important;
+  background: transparent !important;
+}
+
+/* Mobile menu fix */
+@media (max-width: 991px) {
+
+  .navbar-collapse {
+    background-color: #212529; /* dark bg */
+    padding: 10px;
+  }
+
+  .navbar-nav {
+    text-align: left;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px;
+  }
+}
+/* Default (desktop) */
+.logo-img {
+  height: 40px;
+  width:40px;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 28px; 
+    width:28px;  /* 🔥 reduce size */
+  }
+
+  .navbar-brand span {
+    font-size: 12px;  /* text size reduce */
+  }
+}
+</style>
+
+<script>
+        function toggleMenu() {
+  const mobileNav = document.getElementById('mobileNav');
+  mobileNav.classList.toggle('active');
+}
+const cards = document.querySelectorAll('.card');
+const brand = document.querySelector('.brand');
+const statusText = document.getElementById('status');
+
+let index = 0;
+
+document.addEventListener('keydown', () => {
+  if (index < cards.length) {
+    cards[index].classList.add('show');
+    statusText.textContent = "Revealing...";
+    index++;
+  } else {
+    brand.classList.add('show');
+    statusText.textContent = "Welcome to Growth Nest Tech Solutions";
+  }
+});
+// By default, dark mode on
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("dm-switch");
+
+  btn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const icon = document.getElementById('chatbot-icon');
+    const frame = document.getElementById('chatbot-frame');
+
+    if (!icon || !frame) return;
+
+    icon.addEventListener('click', function(e){
+        e.stopPropagation();
+        frame.style.display =
+            frame.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function(e){
+        if(frame.style.display === 'block' &&
+           !frame.contains(e.target) &&
+           !icon.contains(e.target)){
+            frame.style.display = 'none';
+        }
+    });
+
+});
+
+
+
+
+
+document.querySelectorAll('.dropdown-submenu > a').forEach(function(element){
+  element.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    let submenu = this.nextElementSibling;
+    submenu.classList.toggle('show');
+  });
+});
+
+</script>
+
+</body>
+</html>

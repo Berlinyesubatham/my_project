@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Nest Tech  Solutions - Creative Learning</title>
+    <!-- Font Awesome for icons -->
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-6ENhhxSkFqBdyxCzrXytKD4iRn3Lpe4lLZp6bQoNqO1wH4Mw/azb9+1KukcMJ5Jx" crossorigin="anonymous">
+<link rel="icon" type="image/x-icon" href="growth 2.jpg.jpeg">
+<!-- Bootstrap Icons -->
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Google Fonts -->
+    
+    <link rel="stylesheet" href="styles.css">
+    
+   
+    <style>
+            body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      /* space for fixed navbar */
+    }
+
+    /* Navbar fixed at top */
+   
+
+ 
+#chatbot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 9999; /* icon on top */
+  border-radius: 50%; /* circle icon */
+  overflow: hidden;
+  background: transparent; /* white background remove pannidom */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* optional shadow for floating look */
+}
+
+#chatbot-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* icon proper fit aagum */
+}
+
+#chatbot-frame {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  display: none;
+  z-index: 9999;
+  border: none; /* old sharp border remove pannidom */
+  border-radius: 15px; /* smooth rounded corners */
+  overflow: hidden; /* iframe content neatly fit */
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35); /* smooth floating shadow */
+  transition: all 0.3s ease; /* open close smooth animation */
+}
+/* Body Styling */
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Submenu for desktop */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 0.25rem;
+}
+
+/* Mobile fix: dropdown submenu drops below parent */
+@media (max-width: 991px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove any margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+
+  .navbar-nav .dropdown-item {
+    color: white !important;
+    background-color: #1f2a36 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 !important;       /* Ensure no margin */
+    padding-left: 15px !important; /* Add some left padding for text */
+    padding-right: 15px !important; /* Optional */
+  }
+
+  .navbar-nav .dropdown-item:hover {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+}
+#accessibility-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  width: 55px;
+  height: 55px;
+  background: #0d6efd;
+  color: white;
+  font-size: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#accessibility-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 170px;
+  width: 220px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 9999;
+}
+
+#accessibility-panel button {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 6px;
+  border: none;
+  background: #212529;
+  color: white;
+  border-radius: 6px;
+}
+
+.dark-mode {
+  background: #121212;
+  color: white;
+}
+</style>
+
+    
+    <!-- CHATBOT IFRAME -->
+
+
+</head>
+
+
+
+
+    <div class="home-page"></div>
+   
+        <!-- Main Navigation Bar (Desktop only) -->
+   
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="growth 2.jpg.jpeg" alt="Growth Nest Logo" class="logo-img me-2" />
+      <span>Growth Nest Tech Solution</span>
+    </a>
+
+    <!-- Hamburger button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#hero-section">Home</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="static-dynamic.html">Website</a></li>
+            <li><a class="dropdown-item" href="appcreation.html">App Creation</a></li>
+            <li><a class="dropdown-item" href="digitalmarketing.html">Digital Marketing</a></li>
+            <li><a class="dropdown-item" href="dataanalytics.html">Data Analytics</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Career</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="3months.html">3 Months Courses</a></li>
+            <li><a class="dropdown-item" href="6months.html">6 Months Courses</a></li>
+            <li><a class="dropdown-item" href="1year.html">1 Year Courses</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="jobopp12.html">Job Opportunities</a></li>
+        <li class="nav-item"><a class="nav-link" href="location.html">Location</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+      </ul>
+
+               
+            </div>
+                      <i class="search-icon"></i> 
+
+        </div>
+    </div>
+  </div>
+</nav>
+ </header>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.dropdown-submenu > a').forEach(function(element){
+    element.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      let submenu = this.nextElementSibling;
+      submenu.classList.toggle('show');
+    });
+  });
+});
+</script>
+
+        <div class="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+        <div class="close-btn">×</div>   
+    </div>
+
+    <!-- Hero Section with Background Animation -->
+    <section class="ogback">
+    <section class="hero-section" id="hero-section">
+        <div class="hero-content">
+            <h1>Unlock Your Creative Potential with Growth Nest Tech  Solutions!</h1>
+            <p>Dive into a vibrant world of digital art, animation, and tech skills.</p>
+            <!-- CTA button linking to an external Contact Us page -->
+            <a href="animation.html" class="cta-button"><span>Start Learning Today! <i class="fas fa-rocket"></i></span></a>
+        </div>
+    </section>
+    </section>
+</div>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us" id="about-us-section">
+        <h2>Why Choose Us?</h2>
+        <div class="choose-us-grid">
+            <div class="reason-box">
+                <i class="fas fa-globe"></i>
+                <h3>Web Development</h3>
+                <p>"Building modern, responsive, and user-friendly websites that bring your ideas to life online."</p>
+            </div>
+            <div class="reason-box">
+                <i class="fab fa-google-play"></i>
+                <h3>App Creation</h3>
+                <p>“Designed and developed a dynamic web app to improve user experience and website performance.”</p>
+            </div>
+            <div class="reason-box">
+                <i class="fas fa-users"></i>
+                <h3>IT Career</h3>
+                <p>“Empowering individuals to build successful IT careers through skill development and real-world learning.”</p>
+            </div>
+            <div class="reason-box">
+                <i class="fas fa-award"></i>
+                <h3>Career Opportunities</h3>
+                <p>Gain practical skills and a portfolio that opens doors to exciting career paths in the creative industry.</p>
+            </div>
+            <!-- New boxes for Why Choose Us -->
+            <div class="reason-box">
+                <i class="fas fa-magic"></i>
+                <h3>Creative Freedom</h3>
+                <p>Unleash your imagination with projects that encourage personal expression and unique artistic vision.</p>
+            </div>
+            <div class="reason-box">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Innovative Curriculum</h3>
+
+                <p>Stay ahead with our cutting-edge and industry-relevant courses designed for future innovators.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Our Courses Section (Updated with Professional/Plus) -->
+    <section class="explore-courses" id="explore-courses-section">
+        <h2>Explore Our Top Courses</h2>
+        <div class="course-boxes-container">
+            <div class="course-box">
+                <h3>Full Stack JS Programmer</h3>
+                <p>Master JavaScript, Node.js, React, and more to build robust web applications from front to back.</p>
+                <a href="3months.html" class="learn-more">  3 Months Course<i class="fas fa-arrow-right"></i></a>
+                <br>
+                <a href="6months.html" class="learn-more">  6 Months Course<i class="fas fa-arrow-right"></i></a>
+                <br>
+                <a href="1year.html" class="learn-more"> 1 Year Course<i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="course-box">
+                <h3>Advanced Python Programming</h3>
+                <p>Deep dive into advanced Python concepts for data science, machine learning, and automation.</p>
+                <a href="3months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a><br>
+                 <a href="6months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a><br>
+                  <a href="1year.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="course-box">
+                <h3>Cloud Solution Architect</h3>
+                <p>Design and implement scalable, highly available, and fault-tolerant systems on leading cloud platforms.</p>
+                <a href="3months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a><br>
+                 <a href="6months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a><br>
+                  <a href="1year.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="course-box">
+                <h3>Digital Marketing Master</h3>
+                <p>Learn SEO, SMM, PPC, and content strategies to drive online presence and business growth.</p>
+                <a href="3months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a><br>
+                 <a href="6months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a><br>
+                  <a href="1year.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="course-box">
+                <h3>Cyber Security Essentials</h3>
+                <p>Understand the core principles of cybersecurity, network defense, and ethical hacking to protect digital assets.</p>
+                <a href="3months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a><br>
+                 <a href="6months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a><br>
+                  <a href="1year.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="course-box">
+                <h3>Data Analyst Course</h3>
+                <p>Uncover insights from data using statistical methods, data visualization, and reporting tools like R and Power BI.</p>
+                <a href="3months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                 <a href="6months.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                  <a href="1year.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+
+ 
+
+    <section id="cartoon-page">
+
+    <!-- Cartoon Animations Section (Multiple TVs) -->
+    
+    <!-- Your existing cartoon HTML exactly as it is -->
+    <h2  class="section-heading">Cartoon Animations</h2>
+    <div class="tv-gallery-container">
+        <div class="single-tv-unit">
+            <div class="tv-box-container">
+                <div class="tv-screen">
+                    <video loop muted playsinline autoplay>
+                        <source src="Ben10.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <button class="video-title" style="width: 150px;"><a href="cartoon.html">Ben10</a></button>
+        </div>
+
+        <div class="single-tv-unit">
+            <div class="tv-box-container">
+                <div class="tv-screen">
+                    <video loop muted playsinline autoplay>
+                        <source src="tj.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+            </div> 
+            <button class="video-title" style="width: 150px;"><a href="cartoon.html">Tom & Jerry</a></button>
+        </div>
+
+        <div class="single-tv-unit">
+            <div class="tv-box-container">
+                <div class="tv-screen">
+                    <video loop muted playsinline autoplay>
+                        <source src="sm.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <button class="video-title" style="width: 150px;"><a href="cartoon.html">🔥Sakthi Man</a></button>
+        </div>
+    </div>
+</section>
+
+</body>
+
+
+
+<section class="our-spl">
+  <h3 class="section-heading">Our Special Courses</h2>
+
+  <div class="course-cards big">
+
+    <a href="internship.html" class="course-card big-card">
+      <i class="fa-solid fa-briefcase big-icon"></i>
+      <h4>Internship Projects</h4>
+      <p>Work on real-time industry projects with mentor guidance and certification.</p>
+      <span>Explore →</span>
+    </a>
+
+    <a href="job_guarantee.html" class="course-card big-card">
+      <i class="fa-solid fa-user-graduate big-icon"></i>
+      <h4>Job Guarantee Program</h4>
+      <p>Placement-focused training with mock interviews and resume building.</p>
+      <span>Explore →</span>
+    </a>
+
+    <a href="project.html" class="course-card big-card">
+      <i class="fa-solid fa-laptop-code big-icon"></i>
+      <h4>Live Projects</h4>
+      <p>Build real-world projects with source code, mentor reviews, and portfolio support.</p>
+      <span>Explore →</span>
+    </a>
+
+  </div>
+</section>
+
+
+
+
+
+<section class="placement-glass">
+  <h1 class="section-heading placement-title">100% Placement Guidance</h1>
+
+  <div class="logo-slider">
+    <div class="logo-track">
+      <!-- All logos bright + visible -->
+      <img src="https://brandlogos.net/wp-content/uploads/2022/04/tata_consultancy_services-logo-brandlogos.net_-512x512.png">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" alt="Infosys Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" alt="Accenture Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cognizant_logo_2022.svg/250px-Cognizant_logo_2022.svg.png" alt="Cognizant Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/HCL_Technologies_logo.svg/960px-HCL_Technologies_logo.svg.png?20100214041014" alt="HCL Logo">
+
+      <!-- Repeat logos for smooth scroll -->
+<img src="https://brandlogos.net/wp-content/uploads/2022/04/tata_consultancy_services-logo-brandlogos.net_-512x512.png">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" alt="Infosys Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" alt="Accenture Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cognizant_logo_2022.svg/250px-Cognizant_logo_2022.svg.png" alt="Cognizant Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/HCL_Technologies_logo.svg/960px-HCL_Technologies_logo.svg.png?20100214041014" alt="HCL Logo">
+
+    </div>
+  </div>
+</section>
+
+
+     <h1 class="section-heading find-title">Find Us Here!<i class="fas fa-map-marked-alt"></i></h1>
+    <!-- Company Information and Timetable -->
+    <section class="company-info" id="company-info-section">
+        
+        <div class="info-left">
+            
+            <div id="timetable_DIV_1">
+                <div id="timetable_DIV_2">
+                    <h2 id="timetable_H2_3">
+                        Business Hours
+                    </h2>
+                    <div id="timetable_DIV_4">
+                        <dl id="timetable_DL_5">
+                            <dt id="Monday">
+                                Monday
+                            </dt>
+                            <dd id="timetable_DD_7">
+                                9am • 7pm
+                            </dd>
+                        </dl>
+                        <dl id="timetable_DL_8">
+                            <dt id="Tuesday">
+                                Tuesday
+                            </dt>
+                            <dd id="timetable_DD_10">
+                                9am • 7pm
+                            </dd>
+                        </dl>
+                        <dl id="timetable_DL_11">
+                            <dt id="Wednesday">
+                                Wednesday
+                            </dt>
+                            <dd id="timetable_DD_13">
+                                9am • 7pm
+                            </dd>
+                        </dl>
+                        <dl id="timetable_DL_14">
+                            <dt id="Thursday" style="color: #000000;"> <!-- Set Thursday to black -->
+                                Thursday
+                            </dt>
+                            <dd id="timetable_DD_16">
+                                9am • 7pm
+                            </dd>
+                        </dl>
+                        <dl id="timetable_DL_17">
+                            <dt id="Friday">
+                                Friday
+                            </dt>
+                            <dd id="timetable_DD_19">
+                                9am • 7pm
+                            </dd>
+                        </dl>
+                        <dl id="timetable_DL_20">
+                            <dt id="Saturday">
+                                Saturday
+                            </dt>
+                            <dd id="timetable_DD_22">
+                                9am • 7pm
+                            </dd>
+                        </dl>
+                        <dl id="timetable_DL_23">
+                            <dt id="Sunday">
+                                Sunday
+                            </dt>
+                            <dd id="timetable_DD_25">
+                                10am • 3pm
+                            </dd>
+                        </dl>
+                    </div>
+                    <div id="timetable_DIV_26">
+                        Walk-ins Are Welcome
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-right" id="contact-us-section">
+            
+            <!-- Updated iframe src with the new Google Maps embed URL for Castro Palace -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2269.9976195647464!2d77.41516471383129!3d8.710127561598643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0439003d56a7b7%3A0x2414b7237c95821!2sGrowthNest%20Tech%20Solution!5e0!3m2!1sen!2sin!4v1770101412305!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+<div id="chatbot-icon">
+  <img src="chat-bot2.webp" style="width:100%; height:100%;">
+</div>
+
+<div id="chatbot-frame">
+  <iframe src="chatbot.html" style="width:100%; height:100%; border:none;"></iframe>
+</div>
+
+
+
+
+      
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Growth Nest Tech  Solutions. All rights reserved. Designed with <i class="fas fa-heart"></i> for creative minds. <i class="fas fa-feather-alt"></i></p>
+        <div class="utility-left">
+            <!-- <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> 123 Growth Nest Tech  Solutions St, Creativity City</span>
+                <span><i class="fas fa-phone"></i> +91 98765 43210</span>
+                <span><i class="fas fa-envelope"></i> info@snowtech.com</span>
+            </div> -->
+            <div class="social-icons">
+                <!-- External Social Media Links -->
+                <a href="https://facebook.com/snowtech" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/growth_nest_tech_solution/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/snowtech" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://pinterest.com/snowtech" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                <a href="https://linkedin.com/company/snowtech" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+<div id="accessibility-btn">
+  <i class="fas fa-gear"></i>
+</div>
+
+<div id="accessibility-panel">
+  <h5>Accessibility</h5>
+
+  <!-- Replaced button with animated switch -->
+<div id="dm-switch">
+    <a href="#blank" class="buttonNub"></a>
+    <div class="buttonGlow"></div>
+    <div class="buttonClouds"></div>
+    <div class="buttonStars">...</div>
+    <div class="buttonBackground"></div>
+</div>
+  <button onclick="increaseFont()">A+</button>
+  <button onclick="decreaseFont()">A-</button>
+</div>
+
+    <script src="script.js">      
+    </script>
+  
+
+<script>
+    function toggleMenu() {
+  const mobileNav = document.getElementById('mobileNav');
+  mobileNav.classList.toggle('active');
+}
+const cards = document.querySelectorAll('.card');
+const brand = document.querySelector('.brand');
+const statusText = document.getElementById('status');
+
+let index = 0;
+
+document.addEventListener('keydown', () => {
+  if (index < cards.length) {
+    cards[index].classList.add('show');
+    statusText.textContent = "Revealing...";
+    index++;
+  } else {
+    brand.classList.add('show');
+    statusText.textContent = "Welcome to Growth Nest Tech Solutions";
+  }
+});
+// By default, dark mode on
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("dm-switch");
+
+  btn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const icon = document.getElementById('chatbot-icon');
+    const frame = document.getElementById('chatbot-frame');
+
+    if (!icon || !frame) return;
+
+    icon.addEventListener('click', function(e){
+        e.stopPropagation();
+        frame.style.display =
+            frame.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function(e){
+        if(frame.style.display === 'block' &&
+           !frame.contains(e.target) &&
+           !icon.contains(e.target)){
+            frame.style.display = 'none';
+        }
+    });
+
+});
+
+
+
+
+
+document.querySelectorAll('.dropdown-submenu > a').forEach(function(element){
+  element.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    let submenu = this.nextElementSibling;
+    submenu.classList.toggle('show');
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const btn = document.getElementById("dm-switch");
+
+    btn.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+    });
+
+});
+const btn = document.getElementById("accessibility-btn");
+const panel = document.getElementById("accessibility-panel");
+
+btn.addEventListener("click", function(){
+  panel.style.display =
+    panel.style.display === "block" ? "none" : "block";
+});
+
+function toggleDark(){
+  document.body.classList.toggle("dark-mode");
+}
+
+function increaseFont(){
+  document.body.style.fontSize = "18px";
+}
+
+function decreaseFont(){
+  document.body.style.fontSize = "14px";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop Schedule</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .cos {
+      background-color: #1A2B40;
+      color: yellow;
+      text-align: center;
+      padding: 3%;
+      font-size: x-large;
+      text-shadow: 0px 4px 16px rgba(0, 0, 0, 0.464);
+    }
+
+    .backimg {
+      padding: 3%;
+      background: #f7f7f7;
+    }
+
+    .outer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .box {
+      background: rgba(245, 245, 245, 0.8);
+      padding: 20px;
+      text-align: center;
+      border: 3px solid #ADD8E6;
+      border-radius: 20px;
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.3);
+      transition: transform 0.4s ease;
+    }
+
+    .box i {
+      font-size: 3em;
+      margin-bottom: 15px;
+      transition: transform 0.5s ease, color 0.5s ease;
+    }
+
+    .box h2 {
+      margin: 10px 0;
+    }
+
+    /* Locked state */
+    .locked i {
+      color: gray;
+    }
+
+    /* Unlocked animation */
+    .unlocked i {
+      color: green;
+      animation: unlockAnim 1s forwards;
+    }
+
+    @keyframes unlockAnim {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(-30deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+        footer {
+            background-color: #1A2B40;
+            color: yellow;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        footer i {
+            color: white;
+            margin: 0 5px;
+            animation: heartBeat 1.5s infinite;
+        }
+        body.dark-theme .main-header,
+        body.dark-theme .footer {
+            background-color: #050A10; /* Very dark, almost black for header/footer */
+            color: #E0E0E0;
+            border-bottom: 1px solid #3A4B5C;
+        }
+
+        
+  </style>
+</head>
+<body>
+  <div class="cos">
+    <h1>Growth Nest Tech Solutions!</h1>
+  </div>
+
+  <div class="backimg">
+    <h1 style="text-align:center;">This Week’s Workshops</h1>
+    <div class="outer" id="thisWeek">
+      <div class="box"><i class="fa fa-lock"></i><h2>HTML Basics</h2><p>Learn the building blocks of the web.</p></div>
+      <div class="box"><i class="fa fa-lock"></i><h2>CSS Styling</h2><p>Make your websites look beautiful.</p></div>
+      <div class="box"><i class="fa fa-lock"></i><h2>JavaScript Intro</h2><p>Start programming for the browser.</p></div>
+    </div>
+
+    <h1 style="text-align:center;">Next Week’s Workshops</h1>
+    <div class="outer" id="nextWeek">
+      <div class="box"><i class="fa fa-lock"></i><h2>ReactJS</h2><p>Learn modern frontend development.</p></div>
+      <div class="box"><i class="fa fa-lock"></i><h2>NodeJS</h2><p>Backend made easy with JavaScript.</p></div>
+      <div class="box"><i class="fa fa-lock"></i><h2>Database Basics</h2><p>Store and manage your data.</p></div>
+    </div>
+  </div>
+
+    <section>
+    <footer>
+        <p>© 2025 Growth Nest Tech  Solutions. All rights reserved. Designed with <i class="fas fa-heart"></i> for creative minds. <i class="fas fa-feather-alt"></i></p>
+        <div class="utility-left">
+            <!-- <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> 123 Growth Nest Tech  Solutions St, Creativity City</span>
+                <span><i class="fas fa-phone"></i> +91 98765 43210</span>
+                <span><i class="fas fa-envelope"></i> info@snowtech.com</span>
+            </div> -->
+            <div class="social-icons">
+                <!-- External Social Media Links -->
+                <a href="https://facebook.com/snowtech" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/snowtech" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/snowtech" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://pinterest.com/snowtech" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                <a href="https://linkedin.com/company/snowtech" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    </section>
+
+  <script>
+    // Unlock only this week's workshops
+    document.querySelectorAll("#thisWeek .box").forEach(box => {
+      box.classList.add("unlocked");
+      let icon = box.querySelector("i");
+      icon.classList.remove("fa-lock");
+      icon.classList.add("fa-lock-open");
+    });
+
+    // Keep next week's workshops locked
+    document.querySelectorAll("#nextWeek .box").forEach(box => {
+      box.classList.add("locked");
+    });
+  </script>
+</body>
+</html>

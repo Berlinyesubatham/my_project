@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth Nest Tech Solution Chatbot</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background: linear-gradient(135deg,gold,#1cc88a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.chat-container{
+    width:380px;
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    display:flex;
+    flex-direction:column;
+}
+
+.header{
+    background: gold;
+    color:#fff;
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.chat-box{
+    height:420px;
+    padding:15px;
+    overflow-y:auto;
+    background:#f8f9fc;
+}
+
+.message{
+    padding:10px 14px;
+    margin:8px 0;
+    border-radius:15px;
+    max-width:80%;
+    animation:fadeIn 0.4s ease-in-out;
+}
+
+.bot{ background:#e2e6f5; }
+.user{
+    background:#d4edda;
+    margin-left:auto;
+    text-align:right;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.options{ margin-top:5px; }
+
+.options button{
+    margin:3px;
+    padding:6px 10px;
+    border:none;
+    border-radius:15px;
+    background: rgb(126, 184, 40);
+    color:white;
+    cursor:pointer;
+    font-size:12px;
+    transition:0.3s;
+}
+.options button:hover{ background:#2e59d9; }
+
+.input-area{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+input{
+    flex:1;
+    padding:12px;
+    border:none;
+    outline:none;
+}
+button.send{
+    background: gold;
+    color:white;
+    border:none;
+    padding:12px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+    <div class="header">🤖 Growth Nest Career Assistant</div>
+
+    <div class="chat-box" id="chatBox">
+        <div class="message bot">Hi 👋</div>
+        <div class="message bot">How can I help you?</div>
+        <div class="options">
+            <button onclick="handleOption('Course')">Course</button>
+            <button onclick="handleOption('Job Opportunity')">Job Opportunity</button>
+            <button onclick="handleOption('Contact')">Contact</button>
+            <button onclick="handleOption('Location')">Location</button>
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type here..." onkeypress="if(event.key==='Enter') sendMessage()">
+        <button class="send" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+function addMessage(text, type="bot"){
+    const chatBox=document.getElementById("chatBox");
+    const msg=document.createElement("div");
+    msg.className="message "+type;
+    msg.innerHTML=text;
+    chatBox.appendChild(msg);
+    chatBox.scrollTop=chatBox.scrollHeight;
+}
+
+function addOptions(options){
+    const chatBox=document.getElementById("chatBox");
+    const div=document.createElement("div");
+    div.className="options";
+    options.forEach(opt=>{
+        const btn=document.createElement("button");
+        btn.innerText=opt;
+        btn.onclick=()=>handleOption(opt);
+        div.appendChild(btn);
+    });
+    chatBox.appendChild(div);
+    chatBox.scrollTop=chatBox.scrollHeight;
+}
+
+function sendMessage(){
+    const input=document.getElementById("userInput");
+    const text=input.value.trim();
+    if(text==="") return;
+    addMessage(text,"user");
+    handleOption(text);
+    input.value="";
+}
+
+function handleOption(text){
+    const input=text.toLowerCase();
+
+    if(input.includes("hi")){
+        addMessage("Hi 👋 How can I help you?");
+        addOptions(["Course","Job Opportunity","Contact","Location"]);
+    }
+
+    else if(input.includes("course")){
+        addMessage("We offer the following courses 👇");
+        addOptions([
+          "Python Full Stack",
+          "Java Full Stack",
+          "Web Development",
+          "Data Science",
+          "Digital Marketing",
+          "Tally"
+        ]);
+    }
+
+    else if(input.includes("python")){
+        addMessage("Python Full Stack includes HTML, CSS, JS, Python, Django & MySQL.");
+    }
+    else if(input.includes("java")){
+        addMessage("Java Full Stack includes Core Java, Spring Boot, MySQL & Web.");
+    }
+    else if(input.includes("web")){
+        addMessage("Web Development includes HTML, CSS, JavaScript & Bootstrap.");
+    }
+    else if(input.includes("data")){
+        addMessage("Data Science includes Python, ML, Pandas, NumPy.");
+    }
+    else if(input.includes("digital")){
+        addMessage("Digital Marketing includes SEO, Ads & Social Media.");
+    }
+    else if(input.includes("tally")){
+        addMessage("Tally includes Accounting, GST & Payroll.");
+    }
+
+    else if(input.includes("job")){
+        addMessage("Job Opportunity:");
+        addMessage("✔ 100% Placement Assistance");
+    }
+
+    else if(input.includes("contact")){
+        addMessage("📞 Contact: 6369347439");
+        addMessage("📸 Instagram: growth_nest_tech_solution");
+    }
+
+    else if(input.includes("location")){
+        addMessage("📍 Location:");
+        addMessage("Adaiya Karungulam, Tamil Nadu 627425, Ambasamudram.");
+    }
+
+    else{
+        addMessage("Please choose an option 😊");
+        addOptions(["Course","Job Opportunity","Contact","Location"]);
+    }
+}
+</script>
+
+</body>
+</html>

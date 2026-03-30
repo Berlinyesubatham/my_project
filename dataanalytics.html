@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analytics Services</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Optional FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; }
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=1600') no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+.hero h1 { font-weight: 800; }
+.hero p { font-size: 1.2rem; }
+
+/* SECTION PADDING */
+.section-padding { padding:60px 0; }
+
+/* SERVICE CARDS */
+.card {
+    border:none;
+    border-radius:10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+.card i {
+    font-size: 3rem;
+    color: #17a2b8;
+    margin-bottom: 15px;
+}
+
+/* FOOTER */
+.footer {
+    background: #111;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* SECTION TITLES */
+.section-title {
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Submenu for desktop */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 0.25rem;
+}
+
+/* Mobile fix: dropdown submenu drops below parent */
+@media (max-width: 991px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove any margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+
+  .navbar-nav .dropdown-item {
+    color: white !important;
+    background-color: #1f2a36 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 !important;       /* Ensure no margin */
+    padding-left: 15px !important; /* Add some left padding for text */
+    padding-right: 15px !important; /* Optional */
+  }
+
+  .navbar-nav .dropdown-item:hover {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="growth 2.jpg.jpeg" alt="Growth Nest Logo" class="logo-img me-2" />
+      <span>Growth Nest Tech Solution</span>
+    </a>
+
+    <!-- Hamburger button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="static-dynamic.html">Website</a></li>
+            <li><a class="dropdown-item" href="appcreation.html">App Creation</a></li>
+            <li><a class="dropdown-item" href="digitalmarketing.html">Digital Marketing</a></li>
+            <li><a class="dropdown-item" href="dataanalytics.html">Data Analytics</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Career</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="3months.html">3 Months Courses</a></li>
+            <li><a class="dropdown-item" href="6months.html">6 Months Courses</a></li>
+            <li><a class="dropdown-item" href="1year.html">1 Year Courses</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="location.html">Location</a></li>
+        <li class="nav-item"><a class="nav-link" href="jobs.html">Job Opportunities</a></li>
+      </ul>
+
+               
+            </div>
+                      <i class="search-icon"></i> 
+
+        </div>
+    </div>
+  </div>
+</nav>
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <h1>Data Analytics Services</h1>
+        <p>Python • R • Tableau • Power BI • Machine Learning • Data Visualization</p>
+        <a href="contact.html" class="btn btn-info btn-lg mt-3">Get Started</a>
+    </div>
+</section>
+
+<!-- ABOUT DATA ANALYTICS -->
+<section class="section-padding">
+    <div class="container text-center">
+        <h2 class="section-title">What We Do</h2>
+        <p class="lead">We help businesses unlock insights from their data. From cleaning and analyzing datasets to building dashboards and predictive models, our Data Analytics services help you make data-driven decisions.</p>
+    </div>
+</section>
+
+<!-- DATA ANALYTICS SERVICES -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <h2 class="section-title">Our Analytics Services</h2>
+        <div class="row g-4 text-center">
+
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <i class="fas fa-database"></i>
+                    <h4 class="mt-3">Data Collection & Cleaning</h4>
+                    <p>Gather, clean, and prepare data for analysis using Python, R, or SQL.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4 class="mt-3">Data Visualization</h4>
+                    <p>Create interactive dashboards using Tableau, Power BI, or Excel to visualize trends.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <i class="fas fa-brain"></i>
+                    <h4 class="mt-3">Machine Learning Models</h4>
+                    <p>Build predictive models using Python, R, or ML frameworks to forecast business outcomes.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <i class="fas fa-chart-pie"></i>
+                    <h4 class="mt-3">Business Analytics</h4>
+                    <p>Analyze business metrics to optimize operations, marketing, and growth strategies.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <i class="fas fa-cloud"></i>
+                    <h4 class="mt-3">Cloud Analytics</h4>
+                    <p>Leverage cloud platforms like AWS, Azure, or Google Cloud for scalable data analytics.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <i class="fas fa-file-alt"></i>
+                    <h4 class="mt-3">Reporting & Dashboards</h4>
+                    <p>Generate automated reports and live dashboards for quick insights and monitoring.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="section-padding text-center">
+    <div class="container">
+        <h2 class="mb-3">Start Leveraging Your Data Today</h2>
+        <a href="contact.html" class="btn btn-info btn-lg">Contact Us Today</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Growth Nest Tech Solutions | All Rights Reserved
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+     function toggleMenu() {
+  const mobileNav = document.getElementById('mobileNav');
+  mobileNav.classList.toggle('active');
+}
+const cards = document.querySelectorAll('.card');
+const brand = document.querySelector('.brand');
+const statusText = document.getElementById('status');
+
+let index = 0;
+
+document.addEventListener('keydown', () => {
+  if (index < cards.length) {
+    cards[index].classList.add('show');
+    statusText.textContent = "Revealing...";
+    index++;
+  } else {
+    brand.classList.add('show');
+    statusText.textContent = "Welcome to Growth Nest Tech Solutions";
+  }
+});
+// By default, dark mode on
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("dm-switch");
+
+  btn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const icon = document.getElementById('chatbot-icon');
+    const frame = document.getElementById('chatbot-frame');
+
+    if (!icon || !frame) return;
+
+    icon.addEventListener('click', function(e){
+        e.stopPropagation();
+        frame.style.display =
+            frame.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function(e){
+        if(frame.style.display === 'block' &&
+           !frame.contains(e.target) &&
+           !icon.contains(e.target)){
+            frame.style.display = 'none';
+        }
+    });
+
+});
+
+
+
+
+
+document.querySelectorAll('.dropdown-submenu > a').forEach(function(element){
+  element.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    let submenu = this.nextElementSibling;
+    submenu.classList.toggle('show');
+  });
+});
+</script>
+</body>
+</html>

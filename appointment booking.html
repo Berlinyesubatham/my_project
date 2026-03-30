@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy Appointment Booking - Snow Tech Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Base Styles & Typography */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f7;
+            color: #2c3e50;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Submenu for desktop */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 0.25rem;
+}
+
+/* Mobile fix: dropdown submenu drops below parent */
+@media (max-width: 991px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove any margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+
+  .navbar-nav .dropdown-item {
+    color: white !important;
+    background-color: #1f2a36 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 !important;       /* Ensure no margin */
+    padding-left: 15px !important; /* Add some left padding for text */
+    padding-right: 15px !important; /* Optional */
+  }
+
+  .navbar-nav .dropdown-item:hover {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+}
+@media (max-width: 576px) {
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-brand {
+    font-size: 14px;
+    color: gold;
+  }
+
+  .navbar-toggler {
+    padding: 3px 6px;
+  }
+
+}
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Add new animation for floating effect */
+        @keyframes floatEffect {
+            0% { transform: translateY(0px); box-shadow: 0 10px 30px rgba(108, 117, 125, 0.15); }
+            50% { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(108, 117, 125, 0.25); }
+            100% { transform: translateY(0px); box-shadow: 0 10px 30px rgba(108, 117, 125, 0.15); }
+        }
+
+        /* Add new animation for input focus */
+        @keyframes inputFocusGlow {
+            from { box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.1); }
+            to { box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
+        }
+
+
+        /* Header (Booking Page Specific) */
+        .appointment-header {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            padding: 5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        .appointment-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .appointment-header h1,
+        .appointment-header p {
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .appointment-header h1 {
+            font-size: 3.5em;
+            margin: 0;
+            letter-spacing: 2px;
+            font-weight: 700;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .appointment-header p {
+            font-size: 1.3em;
+            margin-top: 15px;
+            color: #e0e0e0;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        /* Main Content Container */
+        .appointment-container {
+            max-width: 1400px; /* Increased width to 1400px */
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Section Heading Style */
+        .section-heading {
+            color: #007bff;
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 5px;
+            background-color: #28a745;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        /* --- Enhanced Calendar Section --- */
+        .calendar-section {
+            border: none;
+            border-radius: 25px; /* More rounded */
+            padding: 30px; /* Slightly less padding for a compact look */
+            box-shadow: 0 15px 40px rgba(0, 119, 182, 0.2); /* Deeper, softer shadow */
+            background: linear-gradient(145deg, #e0f2f7 0%, #cce7f5 100%); /* Lighter, more ethereal gradient */
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+            /* Add a subtle pseudo-element for extra flair */
+        }
+
+        .calendar-section::before {
+            content: '';
+            position: absolute;
+            top: -50px; /* Adjusted position */
+            right: -50px; /* Adjusted position */
+            width: 150px; /* Larger */
+            height: 150px; /* Larger */
+            background: radial-gradient(circle, rgba(0,123,255,0.15) 0%, rgba(0,123,255,0) 70%); /* Stronger gradient */
+            z-index: 0;
+            filter: blur(5px); /* Soften the blur */
+            opacity: 0.8; /* Slightly more visible */
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px; /* More space */
+            background: linear-gradient(90deg, #007bff, #0056b3); /* Deeper blue gradient */
+            padding: 15px 25px; /* More padding */
+            border-radius: 15px; /* More rounded */
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3); /* Stronger shadow */
+            position: relative;
+            z-index: 1;
+        }
+
+        .calendar-header button {
+            background: rgba(255, 255, 255, 0.25); /* Slightly more opaque */
+            border: none;
+            font-size: 1.6em; /* Larger icons */
+            color: white;
+            cursor: pointer;
+            padding: 10px 15px; /* More padding */
+            border-radius: 10px; /* More rounded */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px; /* Larger button */
+            height: 45px; /* Larger button */
+        }
+
+        .calendar-header button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px) scale(1.05); /* More pronounced lift and slight scale */
+        }
+
+        .calendar-header h3 {
+            margin: 0;
+            font-size: 1.8em; /* Larger font */
+            font-weight: 700; /* Bolder */
+            letter-spacing: 1px; /* More spacing */
+            text-shadow: 0 3px 6px rgba(0,0,0,0.2); /* Deeper shadow */
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px; /* Increased gap */
+            text-align: center;
+            font-weight: 700; /* Bolder */
+            color: #0056b3; /* Deeper blue */
+            margin-bottom: 20px; /* More space */
+            font-size: 1em; /* Slightly larger */
+            text-transform: uppercase;
+            letter-spacing: 0.8px; /* More spacing */
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px; /* Increased gap */
+        }
+
+        .calendar-date {
+            background-color: #f7fcfe; /* Lighter background */
+            padding: 15px 10px; /* More padding */
+            border-radius: 15px; /* More rounded */
+            font-size: 1.1em; /* Larger font */
+            font-weight: 600; /* Bolder */
+            color: #34495e;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* Softer shadow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80px; /* Taller */
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(0, 123, 255, 0.15); /* Slightly stronger border */
+        }
+
+        .calendar-date::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,123,255,0.08) 0%, rgba(0,123,255,0) 100%); /* Stronger gradient */
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .calendar-date:not(.disabled):hover {
+            background-color: #e3f6fe; /* Lighter hover background */
+            transform: translateY(-5px) scale(1.03); /* More pronounced lift and scale */
+            box-shadow: 0 12px 25px rgba(26, 188, 156, 0.2); /* Stronger hover shadow */
+            color: #007bff; /* Primary blue on hover */
+        }
+
+        .calendar-date.selected {
+            background: linear-gradient(135deg, #007bff, #0056b3); /* Deeper blue gradient */
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.45); /* Stronger shadow */
+            transform: translateY(-5px) scale(1.05); /* More pronounced pop */
+            border: none;
+            animation: popIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother pop animation */
+        }
+
+        .calendar-date.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 8px; /* Adjusted position */
+            right: 8px; /* Adjusted position */
+            font-size: 1.1em; /* Larger checkmark */
+            color: white;
+        }
+
+        .calendar-date.disabled {
+            background-color: #f0f4f7; /* Slightly darker disabled background */
+            color: #aebacd; /* Softer disabled text */
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+            opacity: 0.6; /* Slightly more opaque disabled state */
+        }
+
+        .calendar-date.today {
+            border: 3px solid #0056b3; /* Thicker, darker blue border */
+            color: #0056b3; /* Darker blue text */
+            background-color: #d1eaff; /* More vibrant today background */
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3); /* Stronger shadow */
+            position: relative;
+        }
+
+        .calendar-date.today::before {
+            content: 'TODAY'; /* All caps */
+            position: absolute;
+            top: 5px; /* Adjusted position */
+            font-size: 0.7em; /* Slightly larger */
+            font-weight: 700; /* Bolder */
+            color: #0056b3; /* Consistent color */
+        }
+
+        .calendar-date.today.selected {
+            background: linear-gradient(135deg, #007bff, #0056b3); /* Consistent selected gradient */
+            color: #fff;
+            border: none;
+        }
+
+        .calendar-date.today.selected::before {
+            color: white;
+        }
+
+        /* Date Badges for Events/Bookings */
+        .date-badge {
+            position: absolute;
+            bottom: 8px; /* Slightly higher */
+            width: 8px; /* Larger */
+            height: 8px; /* Larger */
+            border-radius: 50%;
+            background-color: #28a745;
+            box-shadow: 0 0 8px rgba(40,167,69,0.5); /* Soft glow */
+            transition: all 0.3s ease;
+        }
+
+        .calendar-date:hover .date-badge {
+            transform: scale(1.8); /* More pronounced scale */
+        }
+
+        .calendar-date.selected .date-badge {
+            background-color: #e0f2f7; /* Lighter color when selected */
+            box-shadow: 0 0 10px rgba(255,255,255,0.7); /* White glow */
+        }
+
+        /* --- Time Slots Section --- */
+        .time-slots-section {
+            border: none;
+            border-radius: 25px; /* More rounded */
+            padding: 35px; /* More padding */
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2); /* Deeper, softer shadow */
+            background: linear-gradient(145deg, #e0f7e9 0%, #ccefd8 100%); /* Lighter green gradient */
+            animation: fadeIn 0.9s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-slots-section::before {
+            content: '';
+            position: absolute;
+            bottom: -50px; /* Adjusted position */
+            left: -50px; /* Adjusted position */
+            width: 150px; /* Larger */
+            height: 150px; /* Larger */
+            background: radial-gradient(circle, rgba(40,167,69,0.15) 0%, rgba(40,167,69,0) 70%); /* Stronger gradient */
+            z-index: 0;
+            filter: blur(5px); /* Soften the blur */
+            opacity: 0.8; /* Slightly more visible */
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Slightly wider min width */
+            gap: 20px; /* More gap */
+            max-height: 400px; /* Slightly taller */
+            overflow-y: auto;
+            padding-right: 20px; /* More padding for scrollbar */
+            scrollbar-width: thin;
+            scrollbar-color: #218838 #f0f7e9; /* Darker green scrollbar */
+            position: relative;
+            z-index: 1;
+        }
+        .time-slots-grid::-webkit-scrollbar {
+            width: 10px; /* Thicker scrollbar */
+        }
+        .time-slots-grid::-webkit-scrollbar-track {
+            background: #f0f7e9; /* Lighter track */
+            border-radius: 10px;
+        }
+        .time-slots-grid::-webkit-scrollbar-thumb {
+            background: #218838; /* Darker green thumb */
+            border-radius: 10px;
+        }
+        .time-slots-grid::-webkit-scrollbar-thumb:hover {
+            background: #1e7e34; /* Even darker green on hover */
+        }
+
+        .time-slot {
+            background-color: #eefbee; /* Lighter background */
+            padding: 18px 25px; /* More padding */
+            border-radius: 15px; /* More rounded */
+            text-align: center;
+            font-weight: 700; /* Bolder */
+            color: #218838; /* Darker green */
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.15); /* Softer shadow */
+            border: 1px solid #a8e0b7; /* Softer border */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-slot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(40,167,69,0.1) 0%, rgba(40,167,69,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .time-slot:hover:not(.booked):not(.selected) {
+            background-color: #d4edda;
+            transform: translateY(-7px) scale(1.03); /* More pronounced lift and scale */
+            box-shadow: 0 15px 30px rgba(40, 167, 69, 0.25); /* Stronger hover shadow */
+            color: #1e7e34; /* Even darker green */
+            border-color: #8acb9c; /* Darker border */
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(135deg, #28a745, #1e7e34); /* Deeper green gradient */
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.45); /* Stronger shadow */
+            transform: translateY(-5px) scale(1.05); /* More pronounced pop */
+            border-color: transparent;
+        }
+
+        .time-slot.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 8px; /* Adjusted position */
+            right: 10px; /* Adjusted position */
+            font-size: 1.1em; /* Larger checkmark */
+        }
+
+        .time-slot.booked {
+            background-color: #fff0f0; /* Lighter red background */
+            color: #c0392b; /* Darker red */
+            cursor: not-allowed;
+            opacity: 0.7; /* Slightly more visible */
+            text-decoration: line-through;
+            box-shadow: none;
+            border: 1px dashed #f5b0a3; /* Softer dashed border */
+            position: relative;
+        }
+
+        .time-slot.booked::after {
+            content: 'UNAVAILABLE'; /* More explicit */
+            position: absolute;
+            bottom: 5px; /* Adjusted position */
+            left: 0;
+            width: 100%;
+            font-size: 0.75em; /* Slightly larger */
+            font-weight: 600; /* Bolder */
+            color: #c0392b; /* Consistent color */
+            text-decoration: none;
+        }
+
+        /* --- Appointment Form Section --- */
+        /* Appointment Form Section - Main Container Enhancements */
+        .appointment-form-section {
+            border: none;
+            border-radius: 30px; /* Even more rounded */
+            padding: 40px; /* More padding */
+            box-shadow: 0 20px 50px rgba(108, 117, 125, 0.2); /* Much deeper, softer shadow */
+            background: linear-gradient(145deg, #f7f9fb 0%, #eef3f7 100%); /* Brighter, cleaner gradient */
+            animation: fadeIn 1s ease-out, floatEffect 5s ease-in-out infinite; /* Slightly longer float animation */
+            position: relative;
+            overflow: hidden;
+            z-index: 1; /* Ensure it's above pseudo-elements */
+        }
+
+        .appointment-form-section::before,
+        .appointment-form-section::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108,117,125,0.12) 0%, rgba(108,117,125,0) 70%); /* Stronger gradient */
+            z-index: 0;
+            opacity: 0.6; /* Slightly more visible */
+            filter: blur(8px); /* More blur */
+        }
+
+        .appointment-form-section::before {
+            top: -40px; /* Adjusted position */
+            right: -40px; /* Adjusted position */
+            width: 180px; /* Larger */
+            height: 180px; /* Larger */
+            animation: gradientShift 18s infinite alternate; /* Longer animation */
+        }
+
+        .appointment-form-section::after {
+            bottom: -50px; /* Adjusted position */
+            left: -50px; /* Adjusted position */
+            width: 150px; /* Larger */
+            height: 150px; /* Larger */
+            animation: gradientShift 15s reverse infinite alternate; /* Longer animation */
+        }
+
+        /* Section Heading Style - Specific to "Your Details" */
+        .appointment-form-section .section-heading {
+            font-family: 'Montserrat', sans-serif; /* Different font */
+            color: #2c3e50; /* Darker, more prominent color */
+            font-size: 3.2em; /* Even larger */
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 800; /* Extra bold */
+            position: relative;
+            padding-bottom: 25px;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Subtle text shadow */
+        }
+
+        .appointment-form-section .section-heading::after {
+            background-color: #6c757d; /* Matching color for underline */
+            width: 180px; /* Wider underline */
+            height: 7px; /* Thicker underline */
+            bottom: 0;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 30px; /* More spacing */
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif; /* Different font for labels */
+            font-weight: 700; /* Bolder labels */
+            color: #34495e; /* Consistent color */
+            margin-bottom: 12px; /* More space below label */
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.1em; /* Slightly larger label text */
+        }
+
+        .form-group .required {
+            color: #e74c3c; /* Brighter red */
+        }
+
+        .form-group label:has(+ input:focus),
+        .form-group label:has(+ select:focus),
+        .form-group label:has(+ textarea:focus) {
+            color: #0056b3; /* Highlight label on input focus */
+            transform: translateX(5px); /* Slide label slightly */
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px; /* More padding */
+            border: 1px solid #aebacd; /* Softer border color */
+            border-radius: 15px; /* More rounded corners */
+            font-size: 1.1em; /* Slightly larger text */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+            background-color: #fcfdfe; /* Very light background */
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.08); /* Subtle inner shadow */
+            font-family: 'Poppins', sans-serif; /* Keep input text readable with Poppins */
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.3rem rgba(0, 123, 255, 0.5), inset 0 2px 5px rgba(0,0,0,0.1); /* Stronger, animated glow */
+            outline: none;
+            animation: inputFocusGlow 1s infinite alternate; /* Pulsing glow on focus */
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px; /* Taller textarea */
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #007bff 0%, #004085 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px; /* Larger button */
+            font-size: 1.3em; /* Larger text */
+            font-weight: 700;
+            border-radius: 18px; /* More rounded */
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5); /* Stronger shadow */
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-8px) scale(1.02); /* More pronounced lift */
+            box-shadow: 0 18px 40px rgba(0, 123, 255, 0.6); /* Even stronger shadow */
+            background: linear-gradient(135deg, #0056b3 0%, #007bff 100%); /* Subtle gradient shift on hover */
+        }
+
+        .submit-btn:active {
+            transform: translateY(2px); /* Slightly sink on click */
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Confirmation Section */
+        .confirmation-section {
+            text-align: center;
+            padding: 40px;
+            border-radius: 25px;
+            background: linear-gradient(145deg, #e0f7e9 0%, #ccefd8 100%);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
+            animation: fadeIn 1s ease-out;
+            display: none;
+        }
+
+        .confirmation-details {
+            background: #fdfefe;
+            padding: 30px;
+            border-radius: 18px;
+            margin: 25px 0;
+            text-align: left;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .confirmation-details p {
+            margin: 18px 0;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #34495e;
+        }
+
+        .confirmation-details strong {
+            color: #1e7e34;
+            font-weight: 700;
+        }
+
+        #newBookingBtn {
+            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+        }
+
+        #newBookingBtn:hover {
+            box-shadow: 0 18px 40px rgba(40, 167, 69, 0.6);
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .calendar-date {
+                height: 70px; /* Slightly more height */
+                padding: 12px 6px;
+                font-size: 1em;
+            }
+            
+            .time-slots-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Adjusted min width */
+            }
+
+            .appointment-form-section .section-heading {
+                font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calendar-date {
+                height: 60px; /* More height */
+                padding: 10px 5px;
+                font-size: 0.9em;
+                border-radius: 12px; /* More rounded */
+            }
+            
+            .time-slots-grid {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                gap: 12px;
+            }
+            
+            .time-slot {
+                padding: 15px 18px;
+                font-size: 0.95em;
+            }
+
+            .appointment-form-section .section-heading {
+                font-size: 2.2em;
+            }
+
+            .appointment-form-section::before,
+            .appointment-form-section::after {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        @media (max-width: 360px) {
+            .calendar-date {
+                height: 50px; /* More height */
+                padding: 4px 10px;
+                font-size: 0.8em;
+                border-radius: 10px; /* More rounded */
+                margin-left: -3px;
+            }
+            
+            .time-slots-grid {
+                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+                gap: 10px;
+            }
+            
+            .time-slot {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+
+            .appointment-form-section .section-heading {
+                font-size: 2em;
+            }
+
+            .appointment-form-section::before,
+            .appointment-form-section::after {
+                width: 80px;
+                height: 80px;
+            }
+            .calendar-days{
+                font-size: 0.85em; /* Slightly smaller */
+            }
+            .appointment-container {
+                padding: 3px;
+                margin: 3px 1px;
+            }
+            .appointment-header h1 {
+                font-size: 2.5em;
+            }
+            .appointment-form-section{
+                margin-left: -40px;
+                height: auto;
+                width: 310px;
+            }
+        }
+        
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Submenu for desktop */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 0.25rem;
+}
+
+/* Mobile fix: dropdown submenu drops below parent */
+@media (max-width: 991px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove any margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+
+  .navbar-nav .dropdown-item {
+    color: white !important;
+    background-color: #1f2a36 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 !important;       /* Ensure no margin */
+    padding-left: 15px !important; /* Add some left padding for text */
+    padding-right: 15px !important; /* Optional */
+  }
+
+  .navbar-nav .dropdown-item:hover {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+}
+
+
+    </style>
+</head>
+<body>
+        <header id="appointmentHeader" class="appointment-header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="growth 2.jpg.jpeg" alt="Growth Nest Logo" class="logo-img me-2" />
+      <span>Growth Nest Tech Solution</span>
+    </a>
+
+    <!-- Hamburger button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="static-dynamic.html">Website</a></li>
+            <li><a class="dropdown-item" href="appcreation.html">App Creation</a></li>
+            <li><a class="dropdown-item" href="digitalmarketing.html">Digital Marketing</a></li>
+            <li><a class="dropdown-item" href="dataanalytics.html">Data Analytics</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Career</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="3months.html">3 Months Courses</a></li>
+            <li><a class="dropdown-item" href="6months.html">6 Months Courses</a></li>
+            <li><a class="dropdown-item" href="1year.html">1 Year Courses</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="location.html">Location</a></li>
+        <li class="nav-item"><a class="nav-link" href="jobs.html">Job Opportunities</a></li>
+      </ul>
+
+               
+            </div>
+                      <i class="search-icon"></i> 
+
+        </div>
+    </div>
+  </div>
+</nav>
+        <h1>Book Your Appointment</h1>
+        <p>Your path to learning starts here. Schedule a session with our experts.</p>
+    </header>
+
+    <div class="appointment-container">
+        <section class="calendar-section">
+            <h2 class="section-heading">Select a Date</h2>
+            <div class="calendar-header">
+                <button id="prevMonth" aria-label="Previous Month"><i class="fas fa-chevron-left"></i></button>
+                <h3 id="currentMonthYear"></h3>
+                <button id="nextMonth" aria-label="Next Month"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-days">
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+            </div>
+            <div class="calendar-grid" id="calendarGrid">
+                </div>
+        </section>
+
+        <section class="time-slots-section">
+            <h2 class="section-heading">Choose a Time Slot</h2>
+            <div class="time-slots-grid" id="timeSlotsGrid">
+                <div class="time-slot" data-time="09:00 AM">09:00 AM</div>
+                <div class="time-slot" data-time="09:30 AM">09:30 AM</div>
+                <div class="time-slot booked" data-time="10:00 AM">10:00 AM</div>
+                <div class="time-slot" data-time="10:30 AM">10:30 AM</div>
+                <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+                <div class="time-slot booked" data-time="11:30 AM">11:30 AM</div>
+                <div class="time-slot" data-time="01:00 PM">01:00 PM</div>
+                <div class="time-slot" data-time="01:30 PM">01:30 PM</div>
+                <div class="time-slot" data-time="02:00 PM">02:00 PM</div>
+                <div class="time-slot" data-time="02:30 PM">02:30 PM</div>
+                <div class="time-slot" data-time="03:00 PM">03:00 PM</div>
+                <div class="time-slot" data-time="03:30 PM">03:30 PM</div>
+                <div class="time-slot" data-time="04:00 PM">04:00 PM</div>
+                <div class="time-slot" data-time="04:30 PM">04:30 PM</div>
+                <div class="time-slot booked" data-time="05:00 PM">05:00 PM</div>
+            </div>
+        </section>
+
+        <section class="appointment-form-section">
+            <h2 class="section-heading">Your Details</h2>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="purpose">Purpose of Appointment <span class="required">*</span></label>
+                    <select id="purpose" name="purpose" required>
+                        <option value="" disabled selected>Select a purpose</option>
+                        <option value="Admission Inquiry">Admission Inquiry</option>
+                        <option value="Course Counseling">Course Counseling</option>
+                        <option value="Career Guidance">Career Guidance</option>
+                        <option value="Technical Support">Technical Support</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Notes</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Any additional information you'd like to share"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Confirm Appointment</button>
+            </form>
+        </section>
+
+        <section id="confirmationMessage" class="confirmation-section">
+            <h2 class="section-heading">Appointment Confirmed!</h2>
+            <div class="confirmation-details">
+                <p>Thank you <span id="confName"></span>, your appointment has been scheduled.</p>
+                <p><strong>Date:</strong> <span id="confDate"></span></p>
+                <p><strong>Time:</strong> <span id="confTime"></span></p>
+                <p><strong>Confirmation sent to:</strong> <span id="confEmail"></span></p>
+                <p>We've sent a confirmation email with all the details. Please arrive 10 minutes before your scheduled time.</p>
+            </div>
+            <button id="newBookingBtn" class="submit-btn">Book Another Appointment</button>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const currentMonthYear = document.getElementById('currentMonthYear');
+            const prevMonthBtn = document.getElementById('prevMonth');
+            const nextMonthBtn = document.getElementById('nextMonth');
+            const timeSlotsGrid = document.getElementById('timeSlotsGrid');
+            const appointmentForm = document.getElementById('appointmentForm');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            const appointmentHeader = document.getElementById('appointmentHeader');
+            const newBookingBtn = document.getElementById('newBookingBtn');
+
+            let selectedDate = null;
+            let selectedTime = null;
+            const today = new Date();
+            let currentMonth = today.getMonth();
+            let currentYear = today.getFullYear();
+
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            const bookingBackgroundImages = [
+                'https://images.unsplash.com/photo-1542810636-f0f5b9d31d4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDBwMHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDBwMHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1517032204-63cf60751e06?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDBwMHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://images.unsplash.com/photo-1588702383281-a6755490a6e7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDBwMHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            ];
+            let currentBgIndex = 0;
+
+            function changeHeaderBackground() {
+                appointmentHeader.style.backgroundImage = `url('${bookingBackgroundImages[currentBgIndex]}')`;
+                currentBgIndex = (currentBgIndex + 1) % bookingBackgroundImages.length;
+            }
+
+            // Initial background set
+            changeHeaderBackground();
+            // Change background every 7 seconds
+            setInterval(changeHeaderBackground, 7000);
+
+            function renderCalendar() {
+                calendarGrid.innerHTML = '';
+                currentMonthYear.textContent = `${months[currentMonth]} ${currentYear}`;
+
+                let firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+                let lastDateOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+                // Fill days from previous month (disabled for visual spacing)
+                for (let i = firstDayOfMonth; i > 0; i--) {
+                    const dateEl = document.createElement('div');
+                    dateEl.classList.add('calendar-date', 'disabled');
+                    calendarGrid.appendChild(dateEl);
+                }
+
+                // Fill current month days
+                for (let i = 1; i <= lastDateOfMonth; i++) {
+                    const dateToCheck = new Date(currentYear, currentMonth, i);
+                    const dateEl = document.createElement('div');
+                    dateEl.classList.add('calendar-date', 'current-month');
+                    dateEl.textContent = i;
+
+                    // Add badge for some dates (simulating available appointments)
+                    if (i % 5 === 0 || i % 7 === 0) {
+                        const badge = document.createElement('div');
+                        badge.classList.add('date-badge');
+                        dateEl.appendChild(badge);
+                    }
+
+                    // Disable past dates
+                    const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+                    if (dateToCheck < todayStart) {
+                        dateEl.classList.add('disabled');
+                    }
+
+                    // Mark today's date
+                    if (i === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+                        dateEl.classList.add('today');
+                    }
+
+                    dateEl.addEventListener('click', () => {
+                        if (!dateEl.classList.contains('disabled')) {
+                            const prevSelected = document.querySelector('.calendar-date.selected');
+                            if (prevSelected) {
+                                prevSelected.classList.remove('selected');
+                            }
+                            dateEl.classList.add('selected');
+                            selectedDate = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+                            // Optional: Scroll to time slots section after date selection
+                            document.querySelector('.time-slots-section').scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                    calendarGrid.appendChild(dateEl);
+                }
+            }
+
+            prevMonthBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                renderCalendar();
+            });
+
+            nextMonthBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                renderCalendar();
+            });
+
+            timeSlotsGrid.addEventListener('click', (event) => {
+                const target = event.target;
+                if (target.classList.contains('time-slot') && !target.classList.contains('booked')) {
+                    const prevSelected = document.querySelector('.time-slot.selected');
+                    if (prevSelected) {
+                        prevSelected.classList.remove('selected');
+                    }
+                    target.classList.add('selected');
+                    selectedTime = target.dataset.time;
+                     // Optional: Scroll to form section after time selection
+                    document.querySelector('.appointment-form-section').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            appointmentForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                if (!selectedDate) {
+                    alert('Please select an appointment date.');
+                    return;
+                }
+                if (!selectedTime) {
+                    alert('Please select an appointment time slot.');
+                    return;
+                }
+
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const purpose = document.getElementById('purpose').value;
+                const message = document.getElementById('message').value;
+
+                // Simple validation (can be enhanced)
+                if (!fullName || !email || !phone || !purpose) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Display confirmation
+                document.getElementById('confName').textContent = fullName;
+                document.getElementById('confDate').textContent = new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                document.getElementById('confTime').textContent = selectedTime;
+                document.getElementById('confEmail').textContent = email;
+
+                appointmentForm.reset(); // Clear the form
+                // Hide other sections and show confirmation
+                document.querySelector('.calendar-section').style.display = 'none';
+                document.querySelector('.time-slots-section').style.display = 'none';
+                document.querySelector('.appointment-form-section').style.display = 'none';
+                confirmationMessage.style.display = 'block';
+                confirmationMessage.scrollIntoView({ behavior: 'smooth' });
+
+                // In a real application, you would send this data to a backend server.
+                console.log('Appointment Details:', {
+                    date: selectedDate,
+                    time: selectedTime,
+                    fullName,
+                    email,
+                    phone,
+                    purpose,
+                    message
+                });
+            });
+
+            newBookingBtn.addEventListener('click', () => {
+                // Reset states
+                selectedDate = null;
+                selectedTime = null;
+                const prevSelectedDate = document.querySelector('.calendar-date.selected');
+                if (prevSelectedDate) prevSelectedDate.classList.remove('selected');
+                const prevSelectedTime = document.querySelector('.time-slot.selected');
+                if (prevSelectedTime) prevSelectedTime.classList.remove('selected');
+
+                // Show main sections and hide confirmation
+                document.querySelector('.calendar-section').style.display = 'block';
+                document.querySelector('.time-slots-section').style.display = 'block';
+                document.querySelector('.appointment-form-section').style.display = 'block';
+                confirmationMessage.style.display = 'none';
+                
+                // Scroll back to the top of the booking process
+                document.querySelector('.calendar-section').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            renderCalendar(); // Initial calendar render
+        });
+            function toggleMenu() {
+  const mobileNav = document.getElementById('mobileNav');
+  mobileNav.classList.toggle('active');
+}
+const cards = document.querySelectorAll('.card');
+const brand = document.querySelector('.brand');
+const statusText = document.getElementById('status');
+
+let index = 0;
+
+document.addEventListener('keydown', () => {
+  if (index < cards.length) {
+    cards[index].classList.add('show');
+    statusText.textContent = "Revealing...";
+    index++;
+  } else {
+    brand.classList.add('show');
+    statusText.textContent = "Welcome to Growth Nest Tech Solutions";
+  }
+});
+// By default, dark mode on
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("dm-switch");
+
+  btn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const icon = document.getElementById('chatbot-icon');
+    const frame = document.getElementById('chatbot-frame');
+
+    if (!icon || !frame) return;
+
+    icon.addEventListener('click', function(e){
+        e.stopPropagation();
+        frame.style.display =
+            frame.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function(e){
+        if(frame.style.display === 'block' &&
+           !frame.contains(e.target) &&
+           !icon.contains(e.target)){
+            frame.style.display = 'none';
+        }
+    });
+
+});
+
+
+
+
+
+document.querySelectorAll('.dropdown-submenu > a').forEach(function(element){
+  element.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    let submenu = this.nextElementSibling;
+    submenu.classList.toggle('show');
+  });
+});
+
+    </script>
+</body>l̥ō
+</html>

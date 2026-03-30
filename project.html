@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Our Projects | Growth Nest Tech Solutions</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<style>
+:root{
+--bg:#f4f5f7;
+--text:#1f2937;
+--muted:#6b7280;
+--shadow:rgba(0,0,0,0.12);
+--accent:#0f766e;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:Inter,sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:24px 16px;
+}
+
+/* Hero */
+.hero{
+background:linear-gradient(135deg,#0f766e,#d61a62);
+color:#fff;
+padding:50px 20px;
+border-radius:18px;
+text-align:center;
+margin-bottom:50px;
+}
+
+.hero h1{
+font-family:Montserrat;
+font-size:2.6rem;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:.9;
+font-size:1.1rem;
+}
+
+/* Section Title */
+.section-title{
+font-family:Montserrat;
+font-size:2rem;
+margin-bottom:20px;
+color:#2563eb;
+}
+
+/* Project Card */
+.project-card{
+background:#fff;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 8px 28px var(--shadow);
+margin-bottom:30px;
+transition:.3s;
+}
+
+.project-card:hover{
+transform:translateY(-5px);
+box-shadow:0 16px 36px var(--shadow);
+}
+
+.project-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.project-content{
+padding:18px;
+}
+
+.project-content h3{
+font-family:Montserrat;
+margin-bottom:8px;
+}
+
+.project-content p{
+color:var(--muted);
+font-size:.95rem;
+margin-bottom:12px;
+}
+
+.project-tech{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+}
+
+.project-tech span{
+background:#f3f4f6;
+padding:5px 10px;
+border-radius:8px;
+font-size:.8rem;
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+/* Form */
+.form-section{
+margin-top:70px;
+}
+
+.form-box{
+max-width:650px;
+margin:auto;
+background:#fff;
+padding:36px 28px;
+border-radius:20px;
+box-shadow:0 10px 30px var(--shadow);
+}
+
+.form-box h2{
+text-align:center;
+font-family:Montserrat;
+color:var(--accent);
+margin-bottom:10px;
+}
+
+.form-box p{
+text-align:center;
+color:var(--muted);
+margin-bottom:30px;
+}
+
+.form-group{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+margin-bottom:6px;
+font-weight:500;
+}
+
+input,select,textarea{
+width:100%;
+padding:14px;
+border-radius:10px;
+border:1px solid #e5e7eb;
+font-family:Inter;
+}
+
+textarea{resize:none;}
+
+input:focus,select:focus,textarea:focus{
+outline:none;
+border-color:#2563eb;
+}
+
+.submit-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#2563eb,#cc1c89);
+color:#fff;
+font-weight:600;
+cursor:pointer;
+}
+
+.note{
+text-align:center;
+margin-top:14px;
+font-size:.85rem;
+color:#059669;
+}
+
+/* Button */
+.btn-back{
+display:inline-block;
+margin-top:40px;
+padding:14px 36px;
+background:linear-gradient(135deg,#0f766e,#d61a62);
+color:#fff;
+border-radius:10px;
+text-decoration:none;
+font-weight:600;
+}
+
+/* Responsive */
+@media(max-width:768px){
+.hero h1{font-size:2.2rem;}
+.project-card img{height:180px;}
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Submenu for desktop */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 0.25rem;
+}
+
+/* Mobile fix: dropdown submenu drops below parent */
+@media (max-width: 991px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove any margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+
+  .navbar-nav .dropdown-item {
+    color: white !important;
+    background-color: #1f2a36 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 !important;       /* Ensure no margin */
+    padding-left: 15px !important; /* Add some left padding for text */
+    padding-right: 15px !important; /* Optional */
+  }
+
+  .navbar-nav .dropdown-item:hover {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+}
+
+</style>
+</head>
+
+<body>
+  <div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="growth 2.jpg.jpeg" alt="Growth Nest Logo" class="logo-img me-2" />
+      <span>Growth Nest Tech Solution</span>
+    </a>
+
+    <!-- Hamburger button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="static-dynamic.html">Website</a></li>
+            <li><a class="dropdown-item" href="appcreation.html">App Creation</a></li>
+            <li><a class="dropdown-item" href="digitalmarketing.html">Digital Marketing</a></li>
+            <li><a class="dropdown-item" href="dataanalytics.html">Data Analytics</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Career</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="3months.html">3 Months Courses</a></li>
+            <li><a class="dropdown-item" href="6months.html">6 Months Courses</a></li>
+            <li><a class="dropdown-item" href="1year.html">1 Year Courses</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="location.html">Location</a></li>
+        <li class="nav-item"><a class="nav-link" href="jobs.html">Job Opportunities</a></li>
+      </ul>
+
+               
+            </div>
+                      <i class="search-icon"></i> 
+
+        </div>
+    </div>
+  </div>
+</nav>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+<h1>Our Projects Portfolio</h1>
+<p>Websites, Mobile Apps, AI Solutions & Final Year Student Projects</p>
+</div>
+
+<!-- WEBSITES -->
+<h2 class="section-title">Websites</h2>
+
+<div class="project-card">
+<img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80">
+<div class="project-content">
+<h3>Business & Corporate Websites</h3>
+<p>Responsive, SEO-friendly websites for startups and enterprises.</p>
+<div class="project-tech">
+<span><i class='bx bxl-html5'></i>HTML</span>
+<span><i class='bx bxl-css3'></i>CSS</span>
+<span><i class='bx bxl-react'></i>React</span>
+</div>
+</div>
+</div>
+
+<!-- MOBILE APPS -->
+<h2 class="section-title">Mobile Applications</h2>
+
+<div class="project-card">
+<img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80">
+<div class="project-content">
+<h3>Android & iOS Applications</h3>
+<p>High-performance mobile apps with secure backend integration.</p>
+<div class="project-tech">
+<span><i class='bx bxl-flutter'></i>Flutter</span>
+<span><i class='bx bxl-firebase'></i>Firebase</span>
+</div>
+</div>
+</div>
+
+<!-- AI PROJECTS -->
+<h2 class="section-title">AI & Machine Learning</h2>
+
+<div class="project-card">
+<img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Cutting_Edge_Innovative_AI_Project_Ideas.jpg" alt="AI Machine Learning Project">
+
+<div class="project-content">
+<h3>AI Chatbots & Prediction Systems</h3>
+<p>AI-powered solutions using machine learning and NLP.</p>
+<div class="project-tech">
+<span><i class='bx bx-brain'></i>Python</span>
+<span><i class='bx bxl-tensorflow'></i>TensorFlow</span>
+</div>
+</div>
+</div>
+
+<!-- FINAL YEAR PROJECTS -->
+<h2 class="section-title">Final Year Student Projects</h2>
+
+<div class="project-card">
+<img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80">
+<div class="project-content">
+<h3>Final Year Engineering Projects</h3>
+<p>IEEE & real-time projects with documentation, source code & guidance.</p>
+<div class="project-tech">
+<span>Mini Projects</span>
+<span>Major Projects</span>
+<span>IEEE</span>
+</div>
+</div>
+</div>
+
+<!-- FORM -->
+<section class="form-section">
+<div class="form-box">
+<h2>Request a Project</h2>
+<p>Clients & students – submit your requirement below</p>
+
+<form action="http://127.0.0.1:5000/contact" method="POST">
+  <input type="hidden" name="source" value="Project Page">
+
+  <div class="form-group">
+    <label>Full Name</label>
+    <input type="text" name="name" placeholder="Your Name" required>
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Your Email" required>
+  </div>
+
+  <div class="form-group">
+    <label>Mobile Number</label>
+    <input type="tel" name="mobile" placeholder="Mobile Number" required>
+  </div>
+
+  <div class="form-group">
+    <label>Project Type</label>
+    <select name="address" required>
+      <option value="">Select</option>
+      <option>Website</option>
+      <option>Mobile Application</option>
+      <option>AI / ML Project</option>
+      <option>Final Year Project</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Project Description</label>
+    <textarea name="address" rows="4" placeholder="Briefly explain your requirement"></textarea>
+  </div>
+
+  <button class="submit-btn" type="submit">Submit Request</button>
+</form>
+
+</div>
+</section>
+
+<div style="text-align:center;">
+<a href="index.html" class="btn-back">Go Back</a>
+</div>
+
+</div>
+<script>
+      function toggleMenu() {
+  const mobileNav = document.getElementById('mobileNav');
+  mobileNav.classList.toggle('active');
+}
+const cards = document.querySelectorAll('.card');
+const brand = document.querySelector('.brand');
+const statusText = document.getElementById('status');
+
+let index = 0;
+
+document.addEventListener('keydown', () => {
+  if (index < cards.length) {
+    cards[index].classList.add('show');
+    statusText.textContent = "Revealing...";
+    index++;
+  } else {
+    brand.classList.add('show');
+    statusText.textContent = "Welcome to Growth Nest Tech Solutions";
+  }
+});
+// By default, dark mode on
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("dm-switch");
+
+  btn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const icon = document.getElementById('chatbot-icon');
+    const frame = document.getElementById('chatbot-frame');
+
+    if (!icon || !frame) return;
+
+    icon.addEventListener('click', function(e){
+        e.stopPropagation();
+        frame.style.display =
+            frame.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function(e){
+        if(frame.style.display === 'block' &&
+           !frame.contains(e.target) &&
+           !icon.contains(e.target)){
+            frame.style.display = 'none';
+        }
+    });
+
+});
+
+
+
+
+
+document.querySelectorAll('.dropdown-submenu > a').forEach(function(element){
+  element.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    let submenu = this.nextElementSibling;
+    submenu.classList.toggle('show');
+  });
+});
+</script>
+</body>
+</html>

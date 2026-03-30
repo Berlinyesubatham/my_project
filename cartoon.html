@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Card Hover Effect | code_wars_official</title>
+<link href="https://fonts.googleapis.com/css?family=Rubik+Moonrocks" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Amarante' rel='stylesheet'>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  #chatbot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 9999; /* icon on top */
+  border-radius: 50%; /* circle icon */
+  overflow: hidden;
+  background: transparent; /* white background remove pannidom */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* optional shadow for floating look */
+}
+
+#chatbot-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* icon proper fit aagum */
+}
+
+#chatbot-frame {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  display: none;
+  z-index: 9999;
+  border: none; /* old sharp border remove pannidom */
+  border-radius: 15px; /* smooth rounded corners */
+  overflow: hidden; /* iframe content neatly fit */
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35); /* smooth floating shadow */
+  transition: all 0.3s ease; /* open close smooth animation */
+}
+/* Body Styling */
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107;
+  color: white;
+}
+
+/* Submenu for desktop */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 0.25rem;
+}
+
+/* Mobile fix: dropdown submenu drops below parent */
+@media (max-width: 991px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove any margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+
+  .navbar-nav .dropdown-item {
+    color: white !important;
+    background-color: #1f2a36 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 !important;       /* Ensure no margin */
+    padding-left: 15px !important; /* Add some left padding for text */
+    padding-right: 15px !important; /* Optional */
+  }
+
+  .navbar-nav .dropdown-item:hover {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background-color: #1f2a36 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;       /* Remove margin */
+    padding: 0 !important;      /* Remove padding */
+  }
+}
+@media (max-width: 576px) {
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-brand {
+    font-size: 14px;
+    color: gold;
+  }
+
+  .navbar-toggler {
+    padding: 3px 6px;
+  }
+
+}
+#accessibility-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  width: 55px;
+  height: 55px;
+  background: #0d6efd;
+  color: white;
+  font-size: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#accessibility-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 170px;
+  width: 220px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 9999;
+}
+
+#accessibility-panel button {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 6px;
+  border: none;
+  background: #212529;
+  color: white;
+  border-radius: 6px;
+}
+
+.dark-mode {
+  background: #121212;
+  color: white;
+}
+/* ---------- THEME VARIABLES ---------- */
+:root{
+    --bg-color:linear-gradient(black);
+    --text-color: #f5f5f5;
+    --card-shadow: rgba(255,255,255,0.3);
+}
+
+body.dark-mode{
+    --bg-color: linear-gradient( white);
+    --text-color: #111;
+    --card-shadow:  rgba(0,0,0,0.75);
+}
+
+/* ---------- Page & Heading ---------- */
+body{
+    margin:0;
+    min-height:100vh;
+
+    background-image:url("cartoonbg.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+    gap:60px;
+
+    padding-top:120px; /* navbar space */
+}
+nav.navbar {
+    width: 100%;
+    flex-basis: 100%;   /* 🔥 This prevents collapse */
+}
+/* 🔥 Background Opacity Layer */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);  /* 🔥 Opacity control */
+    z-index:-1;
+}
+h1{
+    flex-basis:100%;
+    text-align:center;
+    font-size:50px;
+    font-family:'Amarante';
+    margin-bottom:40px;
+    color: var(--text-color);
+}
+
+/* ---------- Dark/Light Toggle Button ---------- */
+.toggle-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background: url(smoke1.gif) center/cover no-repeat;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index:999;
+}
+.toggle-btn:hover{
+    transform:rotate(20deg) scale(1.1);
+}
+body.dark-mode .toggle-btn{
+    background: url(smoke1.gif) center/cover no-repeat;
+}
+
+/* ---------- 3-D Card ---------- */
+:root{
+    --board-height:300px;
+    --board-width:calc(var(--board-height) / 1.5);
+}
+*{ box-sizing:border-box; }
+
+.board{
+    width:var(--board-width);
+    height:var(--board-height);
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    padding:0 36px;
+    perspective:2500px;
+    border-radius:5px;
+}
+.cover-image{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:5px;
+}
+.wrapper{
+    transition:all 0.5s;
+    position:absolute;
+    width:100%;
+    z-index:-1;
+    border-radius:5px;
+}
+.board:hover .wrapper{
+    transform:perspective(900px) translateY(-5%) rotateX(25deg);
+    box-shadow:2px 35px 32px -8px var(--card-shadow);
+}
+.wrapper::before,
+.wrapper::after{
+    content:"";
+    opacity:0;
+    width:100%;
+    height:80px;
+    transition:all 0.5s;
+    position:absolute;
+    left:0;
+    border-radius:5px;
+}
+.wrapper::before{
+    top:0;
+    height:100%;
+    background-image:linear-gradient(
+        to top,
+        transparent 46%,
+        rgba(12,13,19,0.5) 68%,
+        rgba(12,13,19) 97%
+    );
+}
+.wrapper::after{
+    bottom:0;
+    opacity:1;
+    background-image:linear-gradient(
+        to bottom,
+        transparent 46%,
+        rgba(12,13,19,0.5) 68%,
+        rgba(12,13,19) 97%
+    );
+}
+.board:hover .wrapper::before,
+.board:hover .wrapper::after{
+    opacity:1;
+}
+.board:hover .wrapper::after{
+    height:120px;
+}
+.title{
+    width:100%;
+    transition:transform 0.5s;
+}
+.board:hover .title{
+    transform:translate3d(0,-50px,100px);
+}
+.character{
+    width:100%;
+    opacity:0;
+    transition:all 0.5s;
+    position:absolute;
+    z-index:-1;
+}
+.board:hover .character{
+    opacity:1;
+    transform:translate3d(0,-30%,100px);
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  z-index: 1000;
+}
+
+.logo {
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  font-family: 'Rubik Moonrocks';
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: 'Rubik Moonrocks';
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: yellow;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="growth 2.jpg.jpeg" alt="Growth Nest Logo" class="logo-img me-2" />
+      <span>Growth Nest Tech Solution</span>
+    </a>
+
+    <!-- Hamburger button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items -->
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="static-dynamic.html">Website</a></li>
+            <li><a class="dropdown-item" href="appcreation.html">App Creation</a></li>
+            <li><a class="dropdown-item" href="digitalmarketing.html">Digital Marketing</a></li>
+            <li><a class="dropdown-item" href="dataanalytics.html">Data Analytics</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">IT Career</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="3months.html">3 Months Courses</a></li>
+            <li><a class="dropdown-item" href="6months.html">6 Months Courses</a></li>
+            <li><a class="dropdown-item" href="1year.html">1 Year Courses</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="location.html">Location</a></li>
+        <li class="nav-item"><a class="nav-link" href="jobs.html">Job Opportunities</a></li>
+      </ul>
+
+               
+            </div>
+                      <i class="search-icon"></i> 
+
+        </div>
+    </div>
+  </div>
+</nav>
+<h1>3D CARTOON IMAGES</h1>
+
+<!-- Toggle Button -->
+<div class="toggle-btn" id="themeToggle" title="Toggle Dark/Bright">🌙</div>
+
+<!-- Your Cards -->
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="jackiechan.jpg" class="cover-image">
+    </div>
+    <img src="jackietitle.png" class="title">
+    <img src="shendu2.webp" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="tom&jerry.jpg" class="cover-image">
+    </div>
+    <img src="tjtitle.png" class="title">
+    <img src="tomj.webp" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="scoobydo.jpg" class="cover-image">
+    </div>
+    <img src="sccobytitle.png" class="title">
+    <img src="scooby2.png" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="bear2.jpeg" class="cover-image">
+    </div>
+    <!-- <img src="/simg/3dcartoon/tomtitle.png" class="title"> -->
+    <img src="bear.png" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="krishana.jpg" class="cover-image">
+    </div>
+    <img src="krishtitle.png" class="title">
+    <img src="krishh.png" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="raindrop.jpg" class="cover-image">
+    </div>
+    <img src="raindroptitle.png" class="title">
+    <img src="raindrop1.png" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="kick.jpg" class="cover-image">
+    </div>
+    <img src="kicktitle.png" class="title">
+    <img src="kick2.png" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="kilmada1.jpg" class="cover-image">
+    </div>
+    <img src="killmadatitle.png" class="title">
+    <img src="killmada2.jpeg" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="benten 1.jpg" class="cover-image">
+    </div>
+    <img src="ben_ten_title-removebg-preview.png" class="title">
+    <img src="benten 2.webp" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="pokeymon1.webp" class="cover-image">
+    </div>
+    <img src="pokeymon title.png" class="title">
+    <img src="picachu.jpg" class="character">
+  </div>
+</a>
+
+<a href="#">
+  <div class="board">
+    <div class="wrapper">
+      <img src="spide1.jpeg" class="cover-image">
+    </div>
+    <img src="spidetitle-removebg-preview.png" class="title">
+    <img src="spide2.jpeg" class="character">
+  </div>
+</a>
+
+
+<script>
+const btn = document.getElementById('themeToggle');
+btn.addEventListener('click',()=>{
+    document.body.classList.toggle('dark-mode');
+    // Change icon
+    btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+});
+
+</script>
+
+</body>
+</html>
